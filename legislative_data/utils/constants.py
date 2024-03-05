@@ -1,0 +1,1 @@
+NOT_INFORMED = "Not informed"
