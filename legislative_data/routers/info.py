@@ -1,3 +1,7 @@
+"""
+Legislative data API route
+"""
+
 from fastapi import APIRouter
 
 from legislative_data.utils import bills_supporters_and_opposers, legislator_bill_votes

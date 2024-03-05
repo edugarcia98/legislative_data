@@ -1,3 +1,7 @@
+"""
+API main
+"""
+
 from fastapi import FastAPI
 
 from legislative_data.routers.info import router as info_router

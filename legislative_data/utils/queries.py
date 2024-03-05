@@ -1,3 +1,7 @@
+"""
+Queries for legislative data
+"""
+
 from typing import List
 
 from legislative_data.utils.constants import NOT_INFORMED
