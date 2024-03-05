@@ -2,4 +2,4 @@
 Util properties
 """
 
-from .data import bills_data, legislators_data, vote_results_data, votes_data
+from .queries import bills_supporters_and_opposers, legislator_bill_votes
