@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bills supporters and opposers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <a href="/">Back</a>
+    <h1 class="display-2">Bills supporters and opposers</h1>
+    <br>
+    <input
+        type="text"
+        id="filter-input"
+        onkeyup="filterByBill()"
+        placeholder="Filter by bill"
+        class="form-control"
+        style="width: 60%;"
+    >
+    <br>
+    <table class="table" id="bills-table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Bill</th>
+            <th scope="col">Supporters</th>
+            <th scope="col">Opposers</th>
+            <th scope="col">Primary Sponsor</th>
+        </tr>
+        {% for item in data %}
+            <tr>
+                <td>{{ item["id"] }}</td>
+                <td>{{ item["bill"] }}</td>
+                <td>{{ item["supporters"] }}</td>
+                <td>{{ item["opposers"] }}</td>
+                <td>{{ item["primary_sponsor"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function filterByBill() {
+            var input, filter_value, table, tr, td, i, txtValue;
+            input = document.getElementById("filter-input");
+            filter_value = input.value.toUpperCase();
+
+            table = document.getElementById("bills-table");
+            tr = table.getElementsByTagName("tr")
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter_value) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

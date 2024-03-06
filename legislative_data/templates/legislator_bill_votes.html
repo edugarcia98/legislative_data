@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Legislator bill votes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <a href="/">Back</a>
+    <h1 class="display-2">Legislator bill votes</h1>
+    <br>
+    <input
+        type="text"
+        id="filter-input"
+        onkeyup="filterByLegislator()"
+        placeholder="Filter by legislator"
+        class="form-control"
+        style="width: 60%;"
+    >
+    <br>
+    <table class="table" id="legislators-table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Legislator</th>
+            <th scope="col">Supported bills</th>
+            <th scope="col">Opposed bills</th>
+        </tr>
+        {% for item in data %}
+            <tr>
+                <td>{{ item["id"] }}</td>
+                <td>{{ item["legislator"] }}</td>
+                <td>{{ item["supported_bills"] }}</td>
+                <td>{{ item["opposed_bills"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function filterByLegislator() {
+            var input, filter_value, table, tr, td, i, txtValue;
+            input = document.getElementById("filter-input");
+            filter_value = input.value.toUpperCase();
+
+            table = document.getElementById("legislators-table");
+            tr = table.getElementsByTagName("tr")
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter_value) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
